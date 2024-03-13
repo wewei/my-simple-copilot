@@ -11,3 +11,5 @@ const SERVER_START_MSG = ('Express server started on port: ' +
   EnvVars.Port.toString());
 
 server.listen(EnvVars.Port, () => logger.info(SERVER_START_MSG));
+
+console.log(process.env.OPENAI_END_POINT);
