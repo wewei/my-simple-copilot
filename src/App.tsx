@@ -1,31 +1,36 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import { Stack, TextField } from "@fluentui/react";
+// import "./App.css";
+import { MessageStream } from "./MessageStream";
+
+const content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui";
+const user = "OpenAI";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
-		<div className="App">
-			<div>
-				<a href="https://reactjs.org" target="_blank" rel="noreferrer">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Rspack + React + TypeScript</h1>
-			<div className="card">
-				<button onClick={() => setCount(count => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Rspack and React logos to learn more!
-			</p>
-		</div>
-	);
+    <Stack styles={{
+			root: {
+				position: "fixed",
+				width: "100%",
+				height: "100%",
+				top: 0,
+			}
+		}}>
+      <Stack.Item
+        styles={{
+          root: {
+            overflow: "scroll",
+          },
+        }}
+      >
+        <MessageStream
+          messages={new Array(10).fill({ content, user })}
+        ></MessageStream>
+      </Stack.Item>
+      <Stack.Item>
+        <TextField></TextField>
+      </Stack.Item>
+    </Stack>
+  );
 }
 
 export default App;
