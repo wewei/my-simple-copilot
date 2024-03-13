@@ -3,9 +3,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import client from "./openai-client";
 
-const app = express();
-
 const port = process.env.PORT || 8080;
+const deploymentId = process.env.OPENAI_DEPLOYMENT_ID || "gpt-4";
+
+const app = express();
 
 app.get("/", (_, res) => {
     res.redirect("/static/index.html");
@@ -17,9 +18,15 @@ const apiRoute = express.Router();
 
 apiRoute.use(bodyParser.json());
 
-apiRoute.post("/chat", (req, res) => {
-    res.json(req.body);
-    res.status(200);
+apiRoute.post("/chat", async (req, res, next) => {
+    const { messages, options } = req.body;
+
+    try {
+        const oaiRes = await client.getChatCompletions(deploymentId, messages, options);
+        res.status(200).json(oaiRes);
+    } catch (e: any) {
+        res.status(400).send({ message: e.message, stack: e.stack });
+    }
 });
 
 app.use("/api", apiRoute);

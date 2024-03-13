@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon ./service/index.ts & rspack build -w",
+    "dev": "NODE_ENV=development nodemon -r dotenv/config ./service/index.ts & rspack build -w",
     "build": "NODE_ENV=production rspack build & tsc --project service",
     "start": "NODE_ENV=production node ./service-dist/index.js"
   },
@@ -22,6 +22,7 @@
     "@types/body-parser": "^1.19.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "dotenv": "^16.4.5",
     "nodemon": "^3.1.0",
     "react-refresh": "^0.14.0",
     "ts-node": "^10.9.2"
