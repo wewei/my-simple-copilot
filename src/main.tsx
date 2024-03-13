@@ -9,23 +9,34 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   </React.StrictMode>,
 );
 
-async function main() {
-  const res = await fetch("/api/chat", {
+async function post(url: string, body: any): Promise<any> {
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username: "foo",
-      password: "bar",
-    }),
+    body: JSON.stringify(body),
   });
 
-  const data = await res.json();
-
-  console.log(data);
+  return res.json();
 }
 
-main();
+async function get(url: string): Promise<any> {
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 
+  return res.json();
+}
+async function main() {
+  console.log(await post("/api/chat", { foo: 123, bar: "hello" }));
+  console.log(await get("/api/env"));
+}
+
+
+main();
