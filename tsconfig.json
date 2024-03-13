@@ -1,9 +1,4 @@
 {
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
   "compilerOptions": {
     "target": "ES6",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
