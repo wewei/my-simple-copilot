@@ -1,10 +1,11 @@
 import path from "node:path";
 import express from "express";
 import bodyParser from "body-parser";
+import client from "./openai-client";
 
 const app = express();
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.get("/", (_, res) => {
     res.redirect("/static/index.html");
@@ -18,11 +19,6 @@ apiRoute.use(bodyParser.json());
 
 apiRoute.post("/chat", (req, res) => {
     res.json(req.body);
-    res.status(200);
-});
-
-apiRoute.get("/env", (req, res) => {
-    res.json(process.env);
     res.status(200);
 });
 

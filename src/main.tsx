@@ -35,7 +35,6 @@ async function get(url: string): Promise<any> {
 }
 async function main() {
   console.log(await post("/api/chat", { foo: 123, bar: "hello" }));
-  console.log(await get("/api/env"));
 }
 
 
