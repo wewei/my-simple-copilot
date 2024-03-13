@@ -1,6 +1,6 @@
-import * as path from "node:path";
-import * as express from "express";
-import * as bodyParser from "body-parser";
+import path from "node:path";
+import express from "express";
+import bodyParser from "body-parser";
 
 const app = express();
 

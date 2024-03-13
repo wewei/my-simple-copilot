@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./service/index.ts & rspack build -w",
-    "build": "NODE_ENV=production rspack build",
-    "start": "NODE_ENV=production ts-node ./service/index.ts"
+    "build": "NODE_ENV=production rspack build & tsc --project service",
+    "start": "NODE_ENV=production node ./service-dist/index.js"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
