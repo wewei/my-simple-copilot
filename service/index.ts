@@ -21,7 +21,7 @@ embedRoute.use((req, res, next) => {
     next();
 });
 
-embedRoute.use(express.static(path.resolve(__dirname, './embed')));
+embedRoute.use(express.static(path.resolve(__dirname, '../embed')));
 
 app.use("/embed", embedRoute);
 
