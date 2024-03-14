@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently --kill-others \"nodemon -r dotenv/config ./service/index.ts\" \"rspack build -w\"",
     "build": "rspack build & tsc --project service",
-    "start": "node ./service-dist/index.js"
+    "start": "node -r dotenv/config ./service-dist/index.js"
   },
   "dependencies": {
     "@azure/openai": "^1.0.0-beta.11",
