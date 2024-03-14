@@ -1,6 +1,7 @@
 import path from "node:path";
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import client from "./openai-client";
 
 const port = process.env.PORT || 8080;
@@ -16,10 +17,7 @@ app.use("/static", express.static(path.resolve(__dirname, '../dist')));
 
 const embedRoute = express.Router();
 
-embedRoute.use((req, res, next) => {
-    res.header({ 'Access-Control-Allow-Origin': '*' });
-    next();
-});
+embedRoute.use(cors());
 
 embedRoute.use(express.static(path.resolve(__dirname, '../embed')));
 
