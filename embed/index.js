@@ -1,7 +1,6 @@
-const myWorker = new SharedWorker("/embed/worker.js");
-myWorker.port.start();
+const bc = new BroadcastChannel("register");
 
 window.addEventListener("message", (event) => {
   const { origin, data } = event;
-  myWorker.port.postMessage({ from: 'client', origin, data });
+  bc.postMessage({ from: 'client', origin, data });
 }, false);

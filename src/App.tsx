@@ -20,7 +20,8 @@ type Register = {
   }[]
 };
 
-const myWorker = new SharedWorker('/embed/worker.js');
+// const myWorker = new SharedWorker('/embed/worker.js');
+const bc = new BroadcastChannel("register");
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -32,7 +33,7 @@ function App() {
   const [funcs, setFuncs] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    myWorker.port.addEventListener("message", ({ data }) => {
+    bc.addEventListener("message", ({ data }) => {
       if (data.from === 'client') {
         if (data.data.func === 'register') {
           console.log(data.data);
@@ -49,17 +50,15 @@ function App() {
                 ]
               : regs
           );
-          console.log(data.data.functions);
+          console.log("from broadcast channel", data.data);
         }
       }
     });
 
-    myWorker.port.start();
-    myWorker.port.postMessage({ from: 'server' });
     return () => {
-      myWorker.port.close();
+      bc.close();
     };
-  }, [myWorker, myWorker.port]);
+  }, [bc]);
 
   const send = useCallback(async () => {
     if (canSend) {
