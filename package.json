@@ -3,9 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon -r dotenv/config ./service/index.ts & rspack build -w",
-    "build": "NODE_ENV=production rspack build & tsc --project service",
-    "start": "NODE_ENV=production node ./service-dist/index.js"
+    "dev": "concurrently --kill-others \"nodemon -r dotenv/config ./service/index.ts\" \"rspack build -w\"",
+    "build": "rspack build & tsc --project service",
+    "start": "node ./service-dist/index.js"
   },
   "dependencies": {
     "@azure/openai": "^1.0.0-beta.11",
@@ -24,6 +24,7 @@
     "@types/body-parser": "^1.19.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.0",
     "react-refresh": "^0.14.0",
