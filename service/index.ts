@@ -14,6 +14,17 @@ app.get("/", (_, res) => {
 
 app.use("/static", express.static(path.resolve(__dirname, '../dist')));
 
+const embedRoute = express.Router();
+
+embedRoute.use((req, res, next) => {
+    res.header({ 'Access-Control-Allow-Origin': '*' });
+    next();
+});
+
+embedRoute.use(express.static(path.resolve(__dirname, './embed')));
+
+app.use("/embed", embedRoute);
+
 const apiRoute = express.Router();
 
 apiRoute.use(bodyParser.json());

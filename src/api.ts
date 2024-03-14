@@ -1,6 +1,6 @@
 import { ChatCompletions, ChatRequestMessage, GetChatCompletionsOptions } from "@azure/openai";
 
-async function post(url: string, body: any): Promise<any> {
+export async function post(url: string, body: any): Promise<any> {
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -17,7 +17,7 @@ async function post(url: string, body: any): Promise<any> {
   return res.json();
 }
 
-async function get(url: string): Promise<any> {
+export async function get(url: string): Promise<any> {
   const res = await fetch(url, {
     method: "GET",
     headers: {
