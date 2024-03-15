@@ -19,6 +19,13 @@ const embedRoute = express.Router();
 
 embedRoute.use(cors());
 
+embedRoute.use((req, res, next) => {
+    res.header({
+      "Content-Security-Policy": "frame-ancestors *",
+    });
+    next();
+});
+
 embedRoute.use(express.static(path.resolve(__dirname, '../embed')));
 
 app.use("/embed", embedRoute);
