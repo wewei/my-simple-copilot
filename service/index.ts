@@ -21,7 +21,7 @@ embedRoute.use(cors());
 
 embedRoute.use((req, res, next) => {
     res.header({
-      "Content-Security-Policy": "frame-ancestors *",
+      "Content-Security-Policy": "frame-ancestors *;",
     });
     next();
 });
